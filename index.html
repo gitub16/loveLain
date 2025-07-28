@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Serial Experiments Lain</title>
+  <title>Present Day... Present Time</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Glitch 效果背景 -->
+  <div class="glitch-bg"></div>
+
   <div class="container">
-    <div class="overlay"></div>
-    <div class="content">
-      <h1 class="title">"No matter where you go, everyone's connected."</h1>
-      <a href="about.html" class="button">Enter the Wired</a>
-    </div>
+    <!-- 使用你提供的 Lain 正脸照片 -->
+    <img src="images/lain.jpeg" alt="Lain" class="lain-image" />
+
+    <!-- 带有 glitch 效果的文字标题 -->
+    <h1 class="glitch-text" data-text="Present Day... Present Time">Present Day... Present Time</h1>
+    
+    <!-- 跳转到角色介绍页的按钮，带有动画效果 -->
+    <a href="about.html" class="wired-button">ENTER THE WIRED</a>
   </div>
 </body>
 </html>
