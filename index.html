@@ -3,22 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Present Day... Present Time</title>
+  <title>Serial Experiments Lain</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Glitch 效果背景 -->
-  <div class="glitch-bg"></div>
+  <div class="crt-overlay"></div>
+  <audio id="bg-audio" src="audio/wired.mp3" loop></audio>
 
-  <div class="container">
-    <!-- 使用你提供的 Lain 正脸照片 -->
+  <div class="container appear">
     <img src="images/lain.jpeg" alt="Lain" class="lain-image" />
 
-    <!-- 带有 glitch 效果的文字标题 -->
     <h1 class="glitch-text" data-text="Present Day... Present Time">Present Day... Present Time</h1>
-    
-    <!-- 跳转到角色介绍页的按钮，带有动画效果 -->
-    <a href="about.html" class="wired-button">ENTER THE WIRED</a>
+
+    <a href="about.html" class="wired-button" onclick="glitchJump()">ENTER THE WIRED</a>
+
+    <button class="sound-toggle" onclick="toggleSound()">🔊</button>
   </div>
+
+  <script>
+    // Glitch jump flash
+    function glitchJump() {
+      document.body.classList.add('glitch-flash');
+      setTimeout(() => {
+        window.location.href = "about.html";
+      }, 300);
+    }
+
+    // Audio toggle
+    let audio = document.getElementById("bg-audio");
+    function toggleSound() {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+
+    // Mouse motion glitch effect
+    document.addEventListener("mousemove", (e) => {
+      const dx = (e.clientX / window.innerWidth - 0.5) * 2;
+      const dy = (e.clientY / window.innerHeight - 0.5) * 2;
+      document.body.style.transform = `translate(${dx}px, ${dy}px)`;
+    });
+  </script>
 </body>
 </html>
