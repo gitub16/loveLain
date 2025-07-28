@@ -2,25 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lain | About</title>
+  <title>About Lain</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
     body {
-      background: black;
       margin: 0;
-      overflow: hidden;
-      font-family: 'Courier New', monospace;
-      color: #00ffff;
-    }
-
-    .container {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 100px auto;
-      padding: 20px;
-      text-align: center;
-      animation: fadeIn 2s ease-out;
+      background: black;
+      color: #d1faff;
+      font-family: 'Share Tech Mono', monospace;
+      overflow-x: hidden;
     }
 
     .bg {
@@ -29,31 +20,59 @@
       width: 100vw; height: 100vh;
       background: url("img/lain.jpeg") no-repeat center center;
       background-size: cover;
-      filter: blur(8px) brightness(0.4);
-      z-index: 1;
+      filter: blur(10px) brightness(0.2);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 30px;
+      background: rgba(0,0,0,0.6);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
+      border: 1px solid #0ff2;
+      border-radius: 8px;
     }
 
     h1 {
       font-size: 3rem;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #0ff;
+      text-shadow: 0 0 8px #0ff;
+    }
+
+    h2 {
+      color: #ff99ff;
+      text-shadow: 0 0 5px #ff99ff88;
+      border-bottom: 1px solid #ff99ff44;
+      padding-bottom: 6px;
+      margin-top: 40px;
     }
 
     p {
-      font-size: 1.1rem;
       line-height: 1.7;
-      text-shadow: 0 0 5px #00ffff77;
+      font-size: 1.05rem;
+      color: #d1faff;
+      margin-bottom: 1.2em;
+      text-shadow: 0 0 4px #0ff2;
     }
 
     .quote {
-      margin-top: 30px;
       font-style: italic;
-      color: #ff99ff;
-      text-shadow: 0 0 8px #ff99ff66;
+      font-size: 1.1rem;
+      color: #ffffff;
+      text-shadow: 0 0 6px #aaa;
+      margin-top: 30px;
+      border-left: 2px solid #fff4;
+      padding-left: 16px;
     }
 
     .btn {
-      margin-top: 40px;
+      display: block;
+      margin: 40px auto 0;
       padding: 12px 28px;
       background: transparent;
       border: 1px solid #00ffff;
@@ -69,9 +88,10 @@
       box-shadow: 0 0 12px #00ffffaa;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    @media (max-width: 768px) {
+      .container {
+        margin: 40px 20px;
+      }
     }
   </style>
 </head>
@@ -79,16 +99,42 @@
   <div class="bg"></div>
 
   <div class="container">
-    <h1>Who is Lain?</h1>
+    <h1>Lain Iwakura</h1>
+
+    <h2>基本资料</h2>
     <p>
-      Lain Iwakura is a quiet junior high school student living in suburban Japan.  
-      She barely uses technology—until a classmate’s suicide triggers strange occurrences in the Wired, a vast virtual network.  
-      As her identity begins to fracture between the physical world and cyberspace, the boundary between “self” and “signal” dissolves.
+      姓名：岩仓玲音（Iwakura Lain）<br>
+      年龄：14 岁<br>
+      性格：内向沉默，孤僻，敏感<br>
+      特征：现实中沉默寡言，Wired中全知全能<br>
+      初登场：《Serial Experiments Lain》（1998）
     </p>
-    <p class="quote">
-      "No matter where you go, everyone is connected."
+
+    <h2>角色解构</h2>
+    <p>
+      玲音是表象与意识之间的通道。她的个体在故事中被分裂为多个存在——现实世界的少女、Wired 中的自我、乃至被人类与神明共同投射的“存在性接口”。她既是观察者也是被观察者，既是用户也是系统。
     </p>
-    <button class="btn" onclick="window.location.href='index.html'">Return to Entry</button>
+    <p>
+      她的存在提出了许多问题：<br>
+      “什么是真实？”<br>
+      “自我是可以数字化的吗？”<br>
+      “我们是自由意识，还是程序运行的一部分？”
+    </p>
+
+    <h2>象征意义</h2>
+    <p>
+      Lain 被广泛认为是对赛博空间中“数字神性”与“集体意识”的隐喻。她体现了个体身份在网络空间中逐渐溶解的过程，也体现了技术对人的再定义。
+    </p>
+    <p>
+      她象征着人类在信息社会中对“自我”的重新构建——从肉体向信号的迁移，从分离向全知连接。
+    </p>
+
+    <div class="quote">
+      “People only have substance within the memories of others.”<br>
+      —— Lain
+    </div>
+
+    <button class="btn" onclick="window.location.href='index.html'">← Return to Entry</button>
   </div>
 </body>
 </html>
