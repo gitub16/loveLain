@@ -120,12 +120,7 @@
       “人只有在他人的记忆中，才拥有实体。”
     </div>
 
-    <button class="btn" onclick="window.location.href='index.html'">← 返回首页</button>
-  </div>
-</body>
-  <audio id="bg-audio" src="audio/wired.mp3" loop autoplay></audio>
-
-<button id="toggle-audio" style="...">
+   <button id="toggle-audio" style="...">
   🔊 SOUND ON
 </button>
 
@@ -141,14 +136,5 @@
       audio.play();
       toggleBtn.textContent = "🔊 SOUND ON";
     }
-  });
-</script>
-  const audio = document.getElementById("bg-audio");
-  const toggleBtn = document.getElementById("toggle-audio");
-
-  toggleBtn.addEventListener("click", () => {
-    audio.muted = !audio.muted;
-    toggleBtn.textContent = audio.muted ? "🔇 SOUND OFF" : "🔊 SOUND ON";
-  });
-</script>
-</html>
+<script>
+<html>
