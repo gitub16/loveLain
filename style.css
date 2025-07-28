@@ -1,0 +1,76 @@
+/* Reset & body styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body, html {
+  height: 100%;
+  font-family: 'Courier New', monospace;
+  background: black;
+  overflow: hidden;
+}
+
+/* Container with background image or effect */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url('images/lain-bg.jpg') no-repeat center center/cover;
+}
+
+/* Optional overlay */
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(3px);
+}
+
+/* Centered content */
+.content {
+  position: relative;
+  z-index: 2;
+  color: #e0e0e0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Lain quote */
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+  animation: flicker 3s infinite alternate;
+}
+
+/* Button style */
+.button {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  color: #00ffe6;
+  text-decoration: none;
+  border: 2px solid #00ffe6;
+  border-radius: 5px;
+  position: relative;
+  transition: 0.3s ease;
+}
+.button:hover {
+  background: #00ffe6;
+  color: black;
+  box-shadow: 0 0 20px #00ffe6;
+}
+
+/* Flicker animation */
+@keyframes flicker {
+  0%   { opacity: 0.8; }
+  19%  { opacity: 0.6; }
+  21%  { opacity: 0.9; }
+  23%  { opacity: 0.4; }
+  40%  { opacity: 1; }
+  60%  { opacity: 0.3; }
+  100% { opacity: 0.8; }
+}
