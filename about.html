@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lain | About</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background: black;
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Courier New', monospace;
+      color: #00ffff;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 100px auto;
+      padding: 20px;
+      text-align: center;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: url("img/lain.jpeg") no-repeat center center;
+      background-size: cover;
+      filter: blur(8px) brightness(0.4);
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      text-shadow: 0 0 5px #00ffff77;
+    }
+
+    .quote {
+      margin-top: 30px;
+      font-style: italic;
+      color: #ff99ff;
+      text-shadow: 0 0 8px #ff99ff66;
+    }
+
+    .btn {
+      margin-top: 40px;
+      padding: 12px 28px;
+      background: transparent;
+      border: 1px solid #00ffff;
+      color: #00ffff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: #00ffff;
+      color: black;
+      box-shadow: 0 0 12px #00ffffaa;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <div class="container">
+    <h1>Who is Lain?</h1>
+    <p>
+      Lain Iwakura is a quiet junior high school student living in suburban Japan.  
+      She barely uses technology—until a classmate’s suicide triggers strange occurrences in the Wired, a vast virtual network.  
+      As her identity begins to fracture between the physical world and cyberspace, the boundary between “self” and “signal” dissolves.
+    </p>
+    <p class="quote">
+      "No matter where you go, everyone is connected."
+    </p>
+    <button class="btn" onclick="window.location.href='index.html'">Return to Entry</button>
+  </div>
+</body>
+</html>
