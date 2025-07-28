@@ -160,3 +160,22 @@ body, html {
   pointer-events: none;
   z-index: 9999;
 }
+.screenshot {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.screenshot img {
+  max-width: 90%;
+  height: auto;
+  border: 1px solid #333;
+  filter: grayscale(60%) brightness(0.7) contrast(1.1);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.05);
+}
+
+.caption {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #778c8c;
+  font-style: italic;
+}
