@@ -1,76 +1,124 @@
-/* Reset & body styles */
-* {
+/* 导入字体，若你有自定义字体文件请取消注释并将文件放入 /fonts 文件夹 */
+/*
+@font-face {
+  font-family: 'PerfectDOS';
+  src: url('fonts/PerfectDOS.ttf') format('truetype');
+}
+*/
+
+body, html {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-body, html {
   height: 100%;
-  font-family: 'Courier New', monospace;
   background: black;
+  font-family: 'monospace'; /* 如果添加了自定义字体，可换成 'PerfectDOS' */
   overflow: hidden;
 }
 
-/* Container with background image or effect */
+/* 全屏 glitch 风格背景 */
+.glitch-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(#111, #000);
+  background-blend-mode: overlay;
+  background-size: cover;
+  animation: scanlines 0.8s infinite linear;
+  z-index: 0;
+}
+
+/* 居中容器 */
 .container {
   position: relative;
-  width: 100%;
-  height: 100%;
-  background: url('images/lain-bg.jpg') no-repeat center center/cover;
-}
-
-/* Optional overlay */
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(3px);
-}
-
-/* Centered content */
-.content {
-  position: relative;
   z-index: 2;
-  color: #e0e0e0;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  color: #00f7ff;
 }
 
-/* Lain quote */
-.title {
-  font-size: 1.8rem;
-  margin-bottom: 40px;
-  animation: flicker 3s infinite alternate;
+/* Lain 正脸照片样式 */
+.lain-image {
+  width: 180px;
+  opacity: 0.9;
+  filter: grayscale(100%) contrast(110%) brightness(90%);
+  animation: pulse 5s infinite;
 }
 
-/* Button style */
-.button {
-  display: inline-block;
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  color: #00ffe6;
-  text-decoration: none;
-  border: 2px solid #00ffe6;
-  border-radius: 5px;
+/* 带有 glitch 效果的标题文字 */
+.glitch-text {
   position: relative;
-  transition: 0.3s ease;
+  font-size: 1.4rem;
+  color: #00f7ff;
+  margin-top: 20px;
+  letter-spacing: 1px;
 }
-.button:hover {
-  background: #00ffe6;
-  color: black;
-  box-shadow: 0 0 20px #00ffe6;
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+.glitch-text::before {
+  animation: glitchTop 1s infinite linear alternate;
+  color: #f0f;
+  top: -2px;
+}
+.glitch-text::after {
+  animation: glitchBottom 1s infinite linear alternate;
+  color: #0ff;
+  top: 2px;
 }
 
-/* Flicker animation */
-@keyframes flicker {
-  0%   { opacity: 0.8; }
-  19%  { opacity: 0.6; }
-  21%  { opacity: 0.9; }
-  23%  { opacity: 0.4; }
-  40%  { opacity: 1; }
-  60%  { opacity: 0.3; }
-  100% { opacity: 0.8; }
+/* 跳转按钮样式及动画 */
+.wired-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  color: #00f7ff;
+  border: 2px solid #00f7ff;
+  background: transparent;
+  text-decoration: none;
+  position: relative;
+  transition: 0.3s;
+}
+.wired-button:hover {
+  background: #00f7ff;
+  color: black;
+  box-shadow: 0 0 20px #00f7ff;
+}
+
+/* 扫描线动画 */
+@keyframes scanlines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 5px; }
+}
+
+/* Glitch 效果动画 */
+@keyframes glitchTop {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, -2px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, 0); }
+  100% { transform: translate(0, 0); }
+}
+@keyframes glitchBottom {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(2px, 1px); }
+  40% { transform: translate(-1px, 2px); }
+  60% { transform: translate(1px, -1px); }
+  80% { transform: translate(-2px, 0); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Lain 图像呼吸效果 */
+@keyframes pulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.6; }
 }
