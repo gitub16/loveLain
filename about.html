@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>About Lain</title>
+  <title>Lain | About</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
   <style>
     body {
       margin: 0;
-      background: black;
-      color: #d1faff;
+      background: #0a0a0a;
+      color: #b5c7c7;
       font-family: 'Share Tech Mono', monospace;
       overflow-x: hidden;
     }
@@ -20,7 +19,7 @@
       width: 100vw; height: 100vh;
       background: url("img/lain.jpeg") no-repeat center center;
       background-size: cover;
-      filter: blur(10px) brightness(0.2);
+      filter: brightness(0.15) blur(10px) grayscale(80%);
       z-index: 0;
     }
 
@@ -29,63 +28,61 @@
       z-index: 2;
       max-width: 900px;
       margin: 80px auto;
-      padding: 30px;
-      background: rgba(0,0,0,0.6);
-      box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
-      border: 1px solid #0ff2;
-      border-radius: 8px;
+      padding: 40px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid #333;
+      border-radius: 6px;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 2.8rem;
       margin-bottom: 30px;
       text-align: center;
-      color: #0ff;
-      text-shadow: 0 0 8px #0ff;
+      color: #88aaaa;
+      text-shadow: none;
     }
 
     h2 {
-      color: #ff99ff;
-      text-shadow: 0 0 5px #ff99ff88;
-      border-bottom: 1px solid #ff99ff44;
-      padding-bottom: 6px;
+      color: #778c8c;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 5px;
       margin-top: 40px;
     }
 
     p {
       line-height: 1.7;
-      font-size: 1.05rem;
-      color: #d1faff;
+      font-size: 1rem;
+      color: #b5c7c7;
       margin-bottom: 1.2em;
-      text-shadow: 0 0 4px #0ff2;
+      text-shadow: none;
     }
 
     .quote {
       font-style: italic;
-      font-size: 1.1rem;
-      color: #ffffff;
-      text-shadow: 0 0 6px #aaa;
-      margin-top: 30px;
-      border-left: 2px solid #fff4;
+      font-size: 1.05rem;
+      color: #c5c5c5;
+      border-left: 2px solid #555;
       padding-left: 16px;
+      margin-top: 30px;
     }
 
     .btn {
       display: block;
       margin: 40px auto 0;
-      padding: 12px 28px;
+      padding: 10px 24px;
       background: transparent;
-      border: 1px solid #00ffff;
-      color: #00ffff;
+      border: 1px solid #666;
+      color: #999;
       font-size: 1rem;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.3s;
     }
 
     .btn:hover {
-      background: #00ffff;
-      color: black;
-      box-shadow: 0 0 12px #00ffffaa;
+      background: #111;
+      color: #ccc;
+      border-color: #888;
     }
 
     @media (max-width: 768px) {
@@ -105,36 +102,25 @@
     <p>
       姓名：岩仓玲音（Iwakura Lain）<br>
       年龄：14 岁<br>
-      性格：内向沉默，孤僻，敏感<br>
-      特征：现实中沉默寡言，Wired中全知全能<br>
+      性格：内向、孤僻、敏感<br>
       初登场：《Serial Experiments Lain》（1998）
     </p>
 
     <h2>角色解构</h2>
     <p>
-      玲音是表象与意识之间的通道。她的个体在故事中被分裂为多个存在——现实世界的少女、Wired 中的自我、乃至被人类与神明共同投射的“存在性接口”。她既是观察者也是被观察者，既是用户也是系统。
-    </p>
-    <p>
-      她的存在提出了许多问题：<br>
-      “什么是真实？”<br>
-      “自我是可以数字化的吗？”<br>
-      “我们是自由意识，还是程序运行的一部分？”
+      Lain 是联结虚拟与现实的中介，她的“自我”在 Wired 中逐渐解构与重组，成为集体意识的一部分。她身上的多重人格和身份象征着技术对人的再定义。
     </p>
 
     <h2>象征意义</h2>
     <p>
-      Lain 被广泛认为是对赛博空间中“数字神性”与“集体意识”的隐喻。她体现了个体身份在网络空间中逐渐溶解的过程，也体现了技术对人的再定义。
-    </p>
-    <p>
-      她象征着人类在信息社会中对“自我”的重新构建——从肉体向信号的迁移，从分离向全知连接。
+      玲音体现了人类意识向数字形式的过渡，抛弃肉体、成为纯信号。她不是救世主，而是冷静观察人类迷失于连接网络的过程。
     </p>
 
     <div class="quote">
-      “People only have substance within the memories of others.”<br>
-      —— Lain
+      “人只有在他人的记忆中，才拥有实体。”
     </div>
 
-    <button class="btn" onclick="window.location.href='index.html'">← Return to Entry</button>
+    <button class="btn" onclick="window.location.href='index.html'">← 返回首页</button>
   </div>
 </body>
 </html>
