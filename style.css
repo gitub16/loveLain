@@ -1,60 +1,67 @@
-/* 导入字体，若你有自定义字体文件请取消注释并将文件放入 /fonts 文件夹 */
-/*
-@font-face {
-  font-family: 'PerfectDOS';
-  src: url('fonts/PerfectDOS.ttf') format('truetype');
-}
-*/
-
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
   background: black;
-  font-family: 'monospace'; /* 如果添加了自定义字体，可换成 'PerfectDOS' */
+  font-family: monospace;
   overflow: hidden;
+  transition: 0.2s ease;
 }
 
-/* 全屏 glitch 风格背景 */
-.glitch-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* CRT scanlines overlay */
+.crt-overlay {
+  position: fixed;
   width: 100%;
   height: 100%;
-  background: radial-gradient(#111, #000);
-  background-blend-mode: overlay;
-  background-size: cover;
-  animation: scanlines 0.8s infinite linear;
-  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 255, 0.03),
+    rgba(0, 255, 255, 0.03) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  animation: flicker 0.15s infinite;
+  z-index: 999;
 }
 
-/* 居中容器 */
-.container {
-  position: relative;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #00f7ff;
+/* Flicker effect */
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.85; }
+  100% { opacity: 1; }
 }
 
-/* Lain 正脸照片样式 */
+/* Entrance animation */
+.appear {
+  animation: appearGlitch 1s ease;
+}
+
+@keyframes appearGlitch {
+  0% {
+    transform: scale(1.05) translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Lain image */
 .lain-image {
-  width: 180px;
-  opacity: 0.9;
-  filter: grayscale(100%) contrast(110%) brightness(90%);
+  width: 200px;
+  opacity: 0.85;
+  filter: grayscale(100%) contrast(110%);
   animation: pulse 5s infinite;
 }
 
-/* 带有 glitch 效果的标题文字 */
+/* Glitchy text */
 .glitch-text {
   position: relative;
   font-size: 1.4rem;
-  color: #00f7ff;
   margin-top: 20px;
-  letter-spacing: 1px;
+  color: #00f7ff;
 }
 .glitch-text::before,
 .glitch-text::after {
@@ -64,17 +71,17 @@ body, html {
   width: 100%;
 }
 .glitch-text::before {
-  animation: glitchTop 1s infinite linear alternate;
   color: #f0f;
   top: -2px;
+  animation: glitchTop 0.8s infinite linear alternate;
 }
 .glitch-text::after {
-  animation: glitchBottom 1s infinite linear alternate;
   color: #0ff;
   top: 2px;
+  animation: glitchBottom 0.8s infinite linear alternate;
 }
 
-/* 跳转按钮样式及动画 */
+/* Wired button */
 .wired-button {
   display: inline-block;
   margin-top: 30px;
@@ -84,8 +91,7 @@ body, html {
   border: 2px solid #00f7ff;
   background: transparent;
   text-decoration: none;
-  position: relative;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 .wired-button:hover {
   background: #00f7ff;
@@ -93,32 +99,39 @@ body, html {
   box-shadow: 0 0 20px #00f7ff;
 }
 
-/* 扫描线动画 */
-@keyframes scanlines {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 5px; }
+/* Sound button */
+.sound-toggle {
+  margin-top: 20px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #00f7ff;
+  cursor: pointer;
 }
 
-/* Glitch 效果动画 */
+/* Pulse */
+@keyframes pulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.5; }
+}
+
+/* Glitch flash on click */
+.glitch-flash {
+  animation: whiteFlash 0.3s forwards;
+}
+@keyframes whiteFlash {
+  0% { background-color: white; }
+  100% { background-color: black; }
+}
+
+/* Glitch movement */
 @keyframes glitchTop {
   0% { transform: translate(0, 0); }
-  20% { transform: translate(-2px, -2px); }
-  40% { transform: translate(2px, -1px); }
-  60% { transform: translate(-1px, 1px); }
-  80% { transform: translate(1px, 0); }
-  100% { transform: translate(0, 0); }
+  50% { transform: translate(-2px, -2px); }
+  100% { transform: translate(2px, -1px); }
 }
 @keyframes glitchBottom {
   0% { transform: translate(0, 0); }
-  20% { transform: translate(2px, 1px); }
-  40% { transform: translate(-1px, 2px); }
-  60% { transform: translate(1px, -1px); }
-  80% { transform: translate(-2px, 0); }
-  100% { transform: translate(0, 0); }
-}
-
-/* Lain 图像呼吸效果 */
-@keyframes pulse {
-  0%, 100% { opacity: 0.9; }
-  50% { opacity: 0.6; }
+  50% { transform: translate(2px, 1px); }
+  100% { transform: translate(-1px, 2px); }
 }
