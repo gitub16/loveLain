@@ -21,6 +21,22 @@
   </div>
 
   <script>
+  // 鼠标干扰偏移效果
+  document.addEventListener("mousemove", (e) => {
+    const dx = (e.clientX / window.innerWidth - 0.5) * 6;
+    const dy = (e.clientY / window.innerHeight - 0.5) * 6;
+    document.body.style.transform = `translate(${dx}px, ${dy}px)`;
+  });
+
+  // 按钮点击后页面 glitch 闪烁 + 跳转
+  function glitchJump() {
+    document.body.classList.add('glitch-flash');
+    setTimeout(() => {
+      window.location.href = "about.html";
+    }, 300);
+  }
+</script>
+
     // Glitch jump flash
     function glitchJump() {
       document.body.classList.add('glitch-flash');
