@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>NAVI Boot</title>
+  <title>NAVI Boot - Wired</title>
   <style>
     body {
       margin: 0;
@@ -67,6 +67,18 @@
     .flicker {
       animation: flicker 2s infinite;
     }
+
+    #mute-noise-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: 1px solid #33ffcc;
+      color: #33ffcc;
+      padding: 4px 12px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
   </style>
 </head>
 <body>
@@ -77,11 +89,15 @@
 </div>
 
 <div class="screen" id="boot-log"></div>
-
-<img id="lain-face" src="images/lain.jpeg" alt="Lain Face" />
-<audio id="boot-audio" src="audio/hallo-navi-enhanced.mp3"></audio>
-
 <div id="typed-text"></div>
+
+<img id="lain-face" src="img/lain.jpg" alt="Lain Face" />
+
+<!-- 音频资源 -->
+<audio id="boot-audio" src="audio/hallo-navi-enhanced.mp3"></audio>
+<audio id="noise-audio" src="audio/white-noise.mp3" loop></audio>
+
+<button id="mute-noise-btn">Toggle Noise</button>
 
 <script>
   const enterBtn = document.getElementById("enter-btn");
@@ -90,6 +106,8 @@
   const lainImg = document.getElementById("lain-face");
   const typedText = document.getElementById("typed-text");
   const audio = document.getElementById("boot-audio");
+  const noiseAudio = document.getElementById("noise-audio");
+  const muteBtn = document.getElementById("mute-noise-btn");
 
   const fullText = "hallo navi...\nhallo lain.";
   let typedIndex = 0;
@@ -125,10 +143,9 @@
       if (i < lines.length) {
         bootLog.textContent += lines[i] + "\n";
         i++;
-        setTimeout(showLine, 500); // 每行延迟
+        setTimeout(showLine, 500);
       } else {
-        // 启动打字动画
-        setTimeout(startTypingSequence, 800);
+        setTimeout(startTypingSequence, 1000);
       }
     }
 
@@ -136,10 +153,17 @@
   }
 
   enterBtn.addEventListener("click", () => {
-    audio.play();
+    audio.play(); // play hallo-navi
+    noiseAudio.volume = 0.3;
+    noiseAudio.play(); // play background white noise
     loginScreen.style.display = "none";
     bootLog.style.display = "block";
     showBootLog();
+  });
+
+  muteBtn.addEventListener("click", () => {
+    noiseAudio.muted = !noiseAudio.muted;
+    muteBtn.textContent = noiseAudio.muted ? "Unmute Noise" : "Mute Noise";
   });
 </script>
 
