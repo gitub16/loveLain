@@ -1,96 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>booting NAVI...</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #000;
-      color: #00ffcc;
-      font-family: 'Share Tech Mono', monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      flex-direction: column;
+<audio id="boot-sound" src="audio/hallo-navi-enhanced.mp3"></audio>
+
+<script>
+  const textElem = document.getElementById("text");
+  const enterBtn = document.getElementById("enter-btn");
+  const audio = document.getElementById("boot-sound");
+
+  const fullText = "hallo navi...\nhallo lain.";
+  let index = 0;
+
+  function typeChar() {
+    if (index < fullText.length) {
+      textElem.textContent += fullText.charAt(index);
+      index++;
+      setTimeout(typeChar, 130);  // 每个字符打印速度（可微调匹配音频）
+    } else {
+      enterBtn.style.opacity = 1;
     }
+  }
 
-    #text {
-      font-size: 1.6rem;
-      white-space: pre-wrap;
-      padding: 20px;
-      text-align: left;
-      width: 80%;
-      max-width: 600px;
-    }
+  window.addEventListener("click", () => {
+    audio.play().catch(() => {});
+  });
 
-    #enter-btn {
-      margin-top: 40px;
-      padding: 10px 30px;
-      border: 1px solid #00ffcc;
-      background: none;
-      color: #00ffcc;
-      font-size: 1rem;
-      cursor: pointer;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    #enter-btn:hover {
-      background: rgba(0,255,255,0.1);
-    }
-
-    .glow {
-      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff5;
-    }
-  </style>
-</head>
-<body>
-  <div id="text" class="glow"></div>
-  <button id="enter-btn" onclick="location.href='main.html'">enter</button>
-  <audio id="boot-sound" src="audio/hallo-navi.mp3"></audio>
-
-  <script>
-    const textElem = document.getElementById("text");
-    const enterBtn = document.getElementById("enter-btn");
-    const audio = document.getElementById("boot-sound");
-
-    const lines = ["hallo navi...", "hallo lain."];
-    let lineIndex = 0;
-    let charIndex = 0;
-
-    function typeLine() {
-      if (lineIndex < lines.length) {
-        const line = lines[lineIndex];
-        if (charIndex < line.length) {
-          textElem.textContent += line.charAt(charIndex);
-          charIndex++;
-          setTimeout(typeLine, 80);
-        } else {
-          textElem.textContent += "\n";
-          lineIndex++;
-          charIndex = 0;
-          setTimeout(typeLine, 500);
-        }
-      } else {
-        enterBtn.style.opacity = 1;
-      }
-    }
-
-    // 防止浏览器拦截播放
-    window.addEventListener("click", () => {
-      audio.play().catch(() => {});
-    });
-
-    // 自动尝试播放
-    window.onload = () => {
-      audio.play().catch(() => {});  // 若被拦截，等待点击触发
-      typeLine();
-    };
-  </script>
-</body>
-</html>
+  window.onload = () => {
+    audio.play().catch(() => {});
+    setTimeout(typeChar, 200);  // 等音频启动后延时打字
+  };
+</script>
