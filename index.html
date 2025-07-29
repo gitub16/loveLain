@@ -1,64 +1,96 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Serial Experiments Lain</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="crt-overlay"></div>
-  <audio id="bg-audio" src="audio/wired.mp3" loop></audio>
-
-  <div class="container appear">
-    <img src="images/lain.jpeg" alt="Lain" class="lain-image" />
-
-    <h1 class="glitch-text" data-text="Present Day... Present Time">Present Day... Present Time</h1>
-
-    <a href="about.html" class="wired-button" onclick="glitchJump()">ENTER THE WIRED</a>
-
-    <button class="sound-toggle" onclick="toggleSound()">🔊</button>
-  </div>
-
-  <script>
-  // 鼠标干扰偏移效果
-  document.addEventListener("mousemove", (e) => {
-    const dx = (e.clientX / window.innerWidth - 0.5) * 6;
-    const dy = (e.clientY / window.innerHeight - 0.5) * 6;
-    document.body.style.transform = `translate(${dx}px, ${dy}px)`;
-  });
-
-  // 按钮点击后页面 glitch 闪烁 + 跳转.fuck u github
-  function glitchJump() {
-    document.body.classList.add('glitch-flash');
-    setTimeout(() => {
-      window.location.href = "about.html";
-    }, 300);
-  }
-    // Glitch jump flash
-    function glitchJump() {
-      document.body.classList.add('glitch-flash');
-      setTimeout(() => {
-        window.location.href = "about.html";
-      }, 300);
+  <title>booting NAVI...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #000;
+      color: #00ffcc;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
     }
 
-    // Audio toggle
-    let audio = document.getElementById("bg-audio");
-    function toggleSound() {
-      if (audio.paused) {
-        audio.play();
+    #text {
+      font-size: 1.6rem;
+      white-space: pre-wrap;
+      padding: 20px;
+      text-align: left;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    #enter-btn {
+      margin-top: 40px;
+      padding: 10px 30px;
+      border: 1px solid #00ffcc;
+      background: none;
+      color: #00ffcc;
+      font-size: 1rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    #enter-btn:hover {
+      background: rgba(0,255,255,0.1);
+    }
+
+    .glow {
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff5;
+    }
+  </style>
+</head>
+<body>
+  <div id="text" class="glow"></div>
+  <button id="enter-btn" onclick="location.href='main.html'">enter</button>
+  <audio id="boot-sound" src="audio/hallo-navi.mp3"></audio>
+
+  <script>
+    const textElem = document.getElementById("text");
+    const enterBtn = document.getElementById("enter-btn");
+    const audio = document.getElementById("boot-sound");
+
+    const lines = ["hallo navi...", "hallo lain."];
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+      if (lineIndex < lines.length) {
+        const line = lines[lineIndex];
+        if (charIndex < line.length) {
+          textElem.textContent += line.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeLine, 80);
+        } else {
+          textElem.textContent += "\n";
+          lineIndex++;
+          charIndex = 0;
+          setTimeout(typeLine, 500);
+        }
       } else {
-        audio.pause();
+        enterBtn.style.opacity = 1;
       }
     }
 
-    // Mouse motion glitch effect
-    document.addEventListener("mousemove", (e) => {
-      const dx = (e.clientX / window.innerWidth - 0.5) * 2;
-      const dy = (e.clientY / window.innerHeight - 0.5) * 2;
-      document.body.style.transform = `translate(${dx}px, ${dy}px)`;
+    // 防止浏览器拦截播放
+    window.addEventListener("click", () => {
+      audio.play().catch(() => {});
     });
+
+    // 自动尝试播放
+    window.onload = () => {
+      audio.play().catch(() => {});  // 若被拦截，等待点击触发
+      typeLine();
+    };
   </script>
 </body>
 </html>
