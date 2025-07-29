@@ -113,14 +113,19 @@
   const fullText = "hallo navi...\nhallo lain.";
   let typedIndex = 0;
 
-  function typeChar() {
-    if (typedIndex < fullText.length) {
-      typedText.textContent += fullText.charAt(typedIndex);
-      typedIndex++;
-      setTimeout(typeChar, 130);
-    }
+function typeChar() {
+  if (typedIndex < fullText.length) {
+    typedText.textContent += fullText.charAt(typedIndex);
+    typedIndex++;
+    setTimeout(typeChar, 130);
+  } else {
+    // 打印完成后等待 2 秒自动跳转
+    setTimeout(() => {
+      window.location.href = "home.html"; // ← 替换成你的首页地址
+    }, 2000);
   }
-
+}
+  
   function startTypingSequence() {
     lainImg.style.opacity = 1;
     setTimeout(typeChar, 800);
