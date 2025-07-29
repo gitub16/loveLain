@@ -110,15 +110,20 @@
   <div class="container">
     <h1>Welcome to the Wired</h1>
     <p>Present time, present place. You are not alone.</p>
-    <button class="glitch-btn" onclick="goToIntro()">Enter new World</button>
+    <button class="glitch-btn" onclick="goToIntro()">Enter Lain's World</button>
   </div>
 
-  <img id="lain-face" src="images/lain.jpeg" alt="Lain Face" />
+  <img id="lain-face" src="img/lain.jpg" alt="Lain Face" />
 
-  <audio id="noise-audio" src="audio/white-noise.mp3" autoplay loop></audio>
+  <!-- 🔊 风扇背景音 -->
+  <audio id="fan-audio" src="audio/fan_noise.mp3" autoplay loop></audio>
 
   <script>
     document.getElementById("lain-face").style.opacity = 1;
+
+    // 控制风扇音音量
+    const fanAudio = document.getElementById("fan-audio");
+    fanAudio.volume = 0.3;
 
     function goToIntro() {
       window.location.href = "intro.html";
