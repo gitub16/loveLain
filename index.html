@@ -119,9 +119,11 @@ function typeChar() {
     typedIndex++;
     setTimeout(typeChar, 130);
   } else {
-    // 打印完成后等待 2 秒自动跳转
+    // 打印完成后 2 秒：停止白噪声 & 跳转
     setTimeout(() => {
-      window.location.href = "home.html"; // ← 替换成你的首页地址
+      noiseAudio.pause();        // 停止播放
+      noiseAudio.currentTime = 0; // 重置播放头（可选）
+      window.location.href = "home.html";
     }, 2000);
   }
 }
