@@ -1,29 +1,147 @@
-<audio id="boot-sound" src="audio/hallo-navi-enhanced.mp3"></audio>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NAVI Boot</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #33ffcc;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .screen {
+      text-align: left;
+      white-space: pre-line;
+      font-size: 1rem;
+      max-width: 800px;
+    }
+
+    .boot-btn {
+      padding: 12px 28px;
+      font-size: 1rem;
+      color: #33ffcc;
+      background: transparent;
+      border: 1px solid #33ffcc;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .boot-btn:hover {
+      color: #ff3366;
+      border-color: #ff3366;
+      box-shadow: 0 0 8px #ff3366;
+    }
+
+    #lain-face {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      width: 300px;
+      transition: opacity 2s ease;
+      z-index: -1;
+    }
+
+    #boot-log {
+      display: none;
+    }
+
+    #typed-text {
+      margin-top: 20px;
+      white-space: pre-line;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.85; }
+    }
+
+    .flicker {
+      animation: flicker 2s infinite;
+    }
+  </style>
+</head>
+<body>
+
+<div class="screen" id="login-screen">
+  <h2 class="flicker">BOOTING NAVI SYSTEM...</h2>
+  <button class="boot-btn" id="enter-btn">ENTER WIRED</button>
+</div>
+
+<div class="screen" id="boot-log"></div>
+
+<img id="lain-face" src="img/lain.jpg" alt="Lain Face" />
+<audio id="boot-audio" src="audio/hallo-navi-enhanced.mp3"></audio>
+
+<div id="typed-text"></div>
 
 <script>
-  const textElem = document.getElementById("text");
   const enterBtn = document.getElementById("enter-btn");
-  const audio = document.getElementById("boot-sound");
+  const loginScreen = document.getElementById("login-screen");
+  const bootLog = document.getElementById("boot-log");
+  const lainImg = document.getElementById("lain-face");
+  const typedText = document.getElementById("typed-text");
+  const audio = document.getElementById("boot-audio");
 
   const fullText = "hallo navi...\nhallo lain.";
-  let index = 0;
+  let typedIndex = 0;
 
   function typeChar() {
-    if (index < fullText.length) {
-      textElem.textContent += fullText.charAt(index);
-      index++;
-      setTimeout(typeChar, 130);  // 每个字符打印速度（可微调匹配音频）
-    } else {
-      enterBtn.style.opacity = 1;
+    if (typedIndex < fullText.length) {
+      typedText.textContent += fullText.charAt(typedIndex);
+      typedIndex++;
+      setTimeout(typeChar, 130);
     }
   }
 
-  window.addEventListener("click", () => {
-    audio.play().catch(() => {});
-  });
+  function startTypingSequence() {
+    lainImg.style.opacity = 1;
+    setTimeout(typeChar, 800);
+  }
 
-  window.onload = () => {
-    audio.play().catch(() => {});
-    setTimeout(typeChar, 200);  // 等音频启动后延时打字
-  };
+  function showBootLog() {
+    const lines = [
+      "[BOOTING SYSTEM...]",
+      "> Checking hardware... OK",
+      "> Memory scan........ OK",
+      "> Loading Kernel... OK",
+      "> Establishing Wired link... OK",
+      "> Initializing NAVI OS [■□□□□]",
+      "> Initializing NAVI OS [■■■□□]",
+      "> Initializing NAVI OS [■■■■■]",
+      "WELCOME LAIN."
+    ];
+
+    let i = 0;
+    function showLine() {
+      if (i < lines.length) {
+        bootLog.textContent += lines[i] + "\n";
+        i++;
+        setTimeout(showLine, 500); // 每行延迟
+      } else {
+        // 启动打字动画
+        setTimeout(startTypingSequence, 800);
+      }
+    }
+
+    showLine();
+  }
+
+  enterBtn.addEventListener("click", () => {
+    audio.play();
+    loginScreen.style.display = "none";
+    bootLog.style.display = "block";
+    showBootLog();
+  });
 </script>
+
+</body>
+</html>
