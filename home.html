@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome to Wired</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #ccc;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 2;
+      animation: fadeIn 3s ease;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #33ffcc;
+      text-shadow: 0 0 5px #33ffcc;
+    }
+
+    p {
+      color: #888;
+      font-size: 0.9em;
+    }
+
+    .glitch-btn {
+      margin-top: 20px;
+      padding: 12px 28px;
+      font-size: 1rem;
+      color: #fff;
+      background: transparent;
+      border: 1px solid #33ffcc;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glitch-btn:hover {
+      color: #ff3399;
+      border-color: #ff3399;
+      box-shadow: 0 0 10px #ff3399;
+    }
+
+    .glitch-btn::before,
+    .glitch-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      background: #ff3399;
+      opacity: 0.2;
+      transform: translateX(-100%);
+      animation: glitch-slide 1s infinite linear;
+    }
+
+    .glitch-btn::after {
+      animation-delay: 0.2s;
+    }
+
+    @keyframes glitch-slide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    #lain-face {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      width: 280px;
+      z-index: 1;
+      transition: opacity 3s ease;
+    }
+
+    .bg-fade {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, #111 0%, #000 80%);
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-fade"></div>
+
+  <div class="container">
+    <h1>Welcome to the Wired</h1>
+    <p>Present time, present place. You are not alone.</p>
+    <button class="glitch-btn" onclick="goToIntro()">Enter Lain's World</button>
+  </div>
+
+  <img id="lain-face" src="img/lain.jpg" alt="Lain Face" />
+
+  <audio id="noise-audio" src="audio/white-noise.mp3" autoplay loop></audio>
+
+  <script>
+    document.getElementById("lain-face").style.opacity = 1;
+
+    function goToIntro() {
+      window.location.href = "intro.html";
+    }
+  </script>
+</body>
+</html>
